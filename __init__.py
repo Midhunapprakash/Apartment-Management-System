@@ -1,0 +1,1 @@
+default_app_config = 'apartment_app.apps.ApartmentAppConfig'

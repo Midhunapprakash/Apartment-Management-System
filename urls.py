@@ -1,0 +1,91 @@
+
+from django.urls import path
+from . import views
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns = [
+    # home urls---------------------------------------------------------------------------------->
+    path('', views.home, name='home'),
+    path('login/', views.login, name='login'),
+    path('add_admin/', views.add_admin, name='add_admin'),
+    path('register/', views.register, name='register'),
+    path('reset-password/', views.reset_password, name='reset_password'),
+    path('about/', views.about, name='about'),
+    path('Services/', views.services, name='services'),
+    path('contact/', views.contact, name='contact'),
+    path('dashboard/', views.dashboard, name='dashboard'),
+    # dashboard urls------------------------------------------------------------------------------>
+    path('announcement/', views.announcement, name='announcement'),
+    path('community_chat/', views.community_chat, name='community_chat'),
+    path('payment/', views.payment, name='payment'),
+    path('complaints/', views.complaints, name='complaints'),
+    path('profile/', views.profile, name='profile'),
+    path('Complaint Reports/', views.complaint_reports, name='complaint_reports'),
+    path('logout/', views.logout_view, name='logout_url'),
+    path('requests/', views.requests, name='requests'),
+    path('admin_requests/', views.admin_requests, name='admin_requests'),
+    path('staff_tasks/', views.staff_tasks, name='staff_tasks'),
+    path('staff_worklog/', views.staff_worklog, name='staff_worklog'),
+    path('staff_dashboard/', views.staff_dashboard, name='staff_dashboard'),
+    path('security_dashboard/', views.security_dashboard, name='security_dashboard'),
+    # admin urls---------------------------------------------------------------------------------->
+    path('residents/', views.residents, name='residents'),
+    path('notifications/', views.notifications, name='notifications'),
+    path('flats_and_payments/', views.flats_and_payments, name='flats_and_payments'),
+    path('admin/users/', views.manage_staff_roles, name='manage_staff_roles'),
+    path('admin/toggle-role/<int:role_id>/', views.toggle_staff_role, name='toggle_staff_role'),
+    path('admin/staff/', views.manage_staff, name='manage_staff'),
+    path('admin/staff/delete/<int:staff_id>/', views.delete_staff, name='delete_staff'),
+    path('admin/residents/reject/<int:pk>/', views.reject_resident, name='reject_resident'),
+    path('pay/<int:id>/<str:access>/', views.make_payment, name='make_payment'),
+    path('amenities',views.amenities,name='amenities'),
+    path('amenity_slots',views.amenity_slots,name='amenity_slots'),
+    path('amenity_block_dates',views.amenity_block_dates,name='amenity_block_dates'),
+    path('amenity_bookings',views.amenity_bookings,name='amenity_bookings'),
+    path('amenity_payments',views.amenity_payments,name='amenity_payments'),
+    path('amenity_booking_history',views.amenity_booking_history,name='amenity_booking_history'),
+    path('staff_entry_log',views.staff_entry_log,name='staff_entry_log'),
+    path('export_booking_csv/', views.export_amenity_bookings_csv, name='export_amenity_bookings_csv'),
+    path('export_payment_csv/', views.export_amenity_payments_csv, name='export_amenity_payments_csv'),
+    path('amenity_analytics/', views.amenity_analytics, name='amenity_analytics'),
+    path('admin/notices/', views.notice_list, name='notice_list'),
+    path('admin/amenity/toggle/<int:amenity_id>/', views.toggle_amenity_status, name='toggle_amenity_status'),
+    path('amenity/payment/success/<int:booking_id>/', views.amenity_payment_success, name='amenity_payment_success'),
+    path('security/visitors/add/', views.add_visitor, name='add_visitor'),
+    path('parcels/', views.parcel_management, name='parcel_management'),
+    path('resident_visitor_requests/', views.visitor_gate, name='visitor_gate'),
+    path('mark_notification_read/<int:id>',views.mark_notification_read,name='mark_notification_read'),
+    # path('admin/alerts/', views.admin_alerts, name='admin_alerts'),
+    path('global-search/', views.global_search, name='global_search'),
+    path('rent_flat_to_new_resident/', views.rent_flat_to_new_resident, name='rent_flat_to_new_resident'),
+    path('make_owner/<int:user_id>/<int:flat_id>', views.make_owner, name='make_owner'),
+    path('owner_payment/', views.owner_payment, name='owner_payment'),
+    path('guest_view_flats/', views.guest_view_flats, name='guest_view_flats'),
+    path('flat-gallery/<int:flat_id>/', views.flat_gallery, name='flat_gallery'),
+    path('admin/flat/<int:id>/', views.admin_flat_details, name='admin_flat_details'),
+    path('admin/flats/<int:flat_id>/gallery/', views.admin_flat_gallery, name='admin_flat_gallery'),
+    path('admin/flats/image/delete/<int:image_id>/', views.delete_flat_image, name='delete_flat_image'),
+    path('guest_flat_details/<int:id>', views.guest_flat_details, name='guest_flat_details'),
+    path('owner_tenant/', views.owner_tenant, name='owner_tenant'),
+    path('admin/staff/delete/<int:staff_id>/', views.delete_staff, name='delete_staff'),
+    path("approve_resident/<int:user_id>/",views.approve_resident,name="approve_resident"),
+    path("request_vacate/", views.request_vacate, name="request_vacate"),
+    path("admin/vacate_requests/", views.admin_vacate_requests, name="admin_vacate_requests"),
+    path("approve_vacate/<int:id>/", views.approve_vacate, name="approve_vacate"),
+    path("reject-vacate/<int:id>/",views.reject_vacate,name="reject_vacate"),
+    path("owner/vacate_requests/", views.owner_vacate_requests, name="owner_vacate_requests"),
+    path('verify-proof/<int:resident_id>/', views.verify_proof, name='verify_proof'),
+    path("maintanance_confirmation/<int:id>/",views.maintanance_confirmation,name="maintanance_confirmation"),
+    path('forgot-password/', views.forgot_password, name='forgot_password'),
+    path('verify-user/<int:user_id>/', views.verify_user, name='verify_user'),
+    path('edit-password/<int:user_id>/', views.edit_password, name='edit_password'),
+    path('account_exist/', views.account_exist, name='account_exist'),
+
+]
+if settings.DEBUG:
+    urlpatterns += static(
+        settings.STATIC_URL,
+        document_root=settings.STATIC_ROOT
+    )
+
